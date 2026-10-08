@@ -1,27 +1,15 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller.js';
-import { AppService } from './app.service.js';
+import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './category/category.module.js';
-import { SequelizeModule } from '@nestjs/sequelize';
-import { Category } from './category/model/category.model.js';
+import { DatabaseModule } from './database/database.module.js';
+import { LoggerModule } from './logger/logger.module.js';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      dialect: 'mssql',
-      host: '123.30.24.75',
-      port: 1433,
-      username: 'sa',
-      password: 'Sa@0912009914',
-      database: 'CinemaTicketDev',
-      models: [Category],
-      autoLoadModels: true,
-      synchronize: false,
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
     CategoryModule,
+    LoggerModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
-
 export class AppModule {}

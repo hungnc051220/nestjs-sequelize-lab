@@ -6,17 +6,17 @@ import { Category } from './model/category.model.js';
 export class CategoryService {
   constructor(@InjectModel(Category) private categoryModel: typeof Category) {}
 
-  async findAll(Deleted?: string): Promise<Category[]> {
-    if (Deleted) {
+  findAll(deleted?: boolean): Promise<Category[]> {
+    if (deleted !== undefined) {
       return this.categoryModel.findAll({
-        where: { Deleted },
+        where: { deleted },
       });
     }
     return this.categoryModel.findAll();
   }
 
-  async findOne(id: number): Promise<Category | null> {
-    const category = this.categoryModel.findOne({ where: { id } });
+  async findOne(id: number): Promise<Category> {
+    const category = await this.categoryModel.findByPk(id);
     if (!category) {
       throw new NotFoundException('Category not found');
     }

@@ -60,7 +60,7 @@ export class Category extends Model implements ICategory {
     autoIncrement: true,
     type: DataType.INTEGER,
   })
-  Id?: number;
+  declare id?: number;
 
   @ApiProperty({
     description: 'Category name',
@@ -70,13 +70,13 @@ export class Category extends Model implements ICategory {
   @IsNotEmpty()
   @IsString()
   @Column({ field: 'Name', type: DataType.STRING })
-  name!: string;
+  declare name: string;
 
   @ApiPropertyOptional({ description: 'Category description', type: 'string' })
   @IsOptional()
   @IsString()
   @Column({ field: 'Description', allowNull: true, type: DataType.TEXT })
-  description?: string;
+  declare description?: string;
 
   @ApiProperty({
     description: 'Category template ID',
@@ -85,14 +85,17 @@ export class Category extends Model implements ICategory {
   })
   @IsNotEmpty()
   @IsNumber()
-  @Column({ field: 'CategoryTemplateId', type: DataType.INTEGER })
-  categoryTemplateId: number = 0;
+  @Column({
+    field: 'CategoryTemplateId',
+    type: DataType.INTEGER,
+  })
+  declare categoryTemplateId: number;
 
   @ApiPropertyOptional({ description: 'Meta keywords for SEO', type: 'string' })
   @IsOptional()
   @IsString()
   @Column({ field: 'MetaKeywords', allowNull: true, type: DataType.STRING })
-  metaKeywords?: string;
+  declare metaKeywords?: string;
 
   @ApiPropertyOptional({
     description: 'Meta description for SEO',
@@ -101,13 +104,13 @@ export class Category extends Model implements ICategory {
   @IsOptional()
   @IsString()
   @Column({ field: 'MetaDescription', allowNull: true, type: DataType.TEXT })
-  metaDescription?: string;
+  declare metaDescription?: string;
 
   @ApiPropertyOptional({ description: 'Meta title for SEO', type: 'string' })
   @IsOptional()
   @IsString()
   @Column({ field: 'MetaTitle', allowNull: true, type: DataType.STRING })
-  metaTitle?: string;
+  declare metaTitle?: string;
 
   @ApiProperty({
     description: 'Parent category ID',
@@ -117,7 +120,7 @@ export class Category extends Model implements ICategory {
   @IsNotEmpty()
   @IsNumber()
   @Column({ field: 'ParentCategoryId', type: DataType.INTEGER })
-  parentCategoryId: number = 0;
+  declare parentCategoryId: number;
 
   @ApiProperty({ description: 'Picture ID', example: 1, type: 'number' })
   @IsNotEmpty()
@@ -133,7 +136,7 @@ export class Category extends Model implements ICategory {
   @IsNotEmpty()
   @IsNumber()
   @Column({ field: 'PageSize', type: DataType.INTEGER })
-  pageSize: number = 0;
+  declare pageSize: number;
 
   @ApiProperty({
     description: 'Allow customers to select page size',
@@ -147,7 +150,7 @@ export class Category extends Model implements ICategory {
     type: DataType.BOOLEAN,
     defaultValue: false,
   })
-  allowCustomersToSelectPageSize: boolean = false;
+  declare allowCustomersToSelectPageSize: boolean;
 
   @ApiPropertyOptional({
     description: 'Page size options (comma-separated)',
@@ -157,13 +160,13 @@ export class Category extends Model implements ICategory {
   @IsOptional()
   @IsString()
   @Column({ field: 'PageSizeOptions', allowNull: true, type: DataType.STRING })
-  pageSizeOptions?: string;
+  declare pageSizeOptions?: string;
 
   @ApiPropertyOptional({ description: 'Price ranges', type: 'string' })
   @IsOptional()
   @IsString()
   @Column({ field: 'PriceRanges', allowNull: true, type: DataType.STRING })
-  priceRanges?: string;
+  declare priceRanges?: string;
 
   @ApiProperty({
     description: 'Show on home page',
@@ -177,7 +180,7 @@ export class Category extends Model implements ICategory {
     type: DataType.BOOLEAN,
     defaultValue: false,
   })
-  showOnHomePage: boolean = false;
+  declare showOnHomePage: boolean;
 
   @ApiProperty({
     description: 'Has discounts applied',
@@ -191,7 +194,7 @@ export class Category extends Model implements ICategory {
     type: DataType.BOOLEAN,
     defaultValue: false,
   })
-  hasDiscountsApplied: boolean = false;
+  declare hasDiscountsApplied: boolean;
 
   @ApiProperty({
     description: 'Subject to ACL',
@@ -205,7 +208,7 @@ export class Category extends Model implements ICategory {
     type: DataType.BOOLEAN,
     defaultValue: false,
   })
-  subjectToAcl: boolean = false;
+  declare subjectToAcl: boolean;
 
   @ApiProperty({
     description: 'Limited to specific stores',
@@ -219,25 +222,25 @@ export class Category extends Model implements ICategory {
     type: DataType.BOOLEAN,
     defaultValue: false,
   })
-  limitedToStores: boolean = false;
+  declare limitedToStores: boolean;
 
   @ApiProperty({ description: 'Is published', example: true, type: 'boolean' })
   @IsNotEmpty()
   @IsBoolean()
   @Column({ field: 'Published', type: DataType.BOOLEAN, defaultValue: false })
-  published: boolean = false;
+  declare published: boolean;
 
   @ApiProperty({ description: 'Is deleted', example: false, type: 'boolean' })
   @IsNotEmpty()
   @IsBoolean()
   @Column({ field: 'Deleted', type: DataType.BOOLEAN, defaultValue: false })
-  deleted: boolean = false;
+  declare deleted: boolean;
 
   @ApiProperty({ description: 'Display order', example: 1, type: 'number' })
   @IsNotEmpty()
   @IsNumber()
   @Column({ field: 'DisplayOrder', type: DataType.INTEGER, defaultValue: 1 })
-  displayOrder: number = 1;
+  declare displayOrder: number;
 
   @ApiPropertyOptional({
     description: 'Created date (UTC)',
@@ -248,7 +251,7 @@ export class Category extends Model implements ICategory {
   @IsOptional()
   @IsDateString()
   @Column({ field: 'CreatedOnUtc', allowNull: true, type: DataType.DATE })
-  createdOnUtc?: Date;
+  declare createdOnUtc?: Date;
 
   @UpdatedAt
   @ApiPropertyOptional({
@@ -260,7 +263,7 @@ export class Category extends Model implements ICategory {
   @IsOptional()
   @IsDateString()
   @Column({ field: 'UpdatedOnUtc', allowNull: true, type: DataType.DATE })
-  updatedOnUtc?: Date;
+  declare updatedOnUtc?: Date;
 
   @ApiProperty({
     description: 'Is favorites category',
@@ -270,7 +273,7 @@ export class Category extends Model implements ICategory {
   @IsNotEmpty()
   @IsBoolean()
   @Column({ field: 'IsFavorites', type: DataType.BOOLEAN, defaultValue: false })
-  isFavorites: boolean = false;
+  declare isFavorites: boolean;
 
   @ApiProperty({
     description: 'Category level in hierarchy',
@@ -280,7 +283,7 @@ export class Category extends Model implements ICategory {
   @IsNotEmpty()
   @IsNumber()
   @Column({ field: 'Level', type: DataType.INTEGER, defaultValue: 1 })
-  level: number = 1;
+  declare level: number;
 
   @ApiPropertyOptional({
     description: 'Sub-categories (comma-separated IDs)',
@@ -299,7 +302,7 @@ export class Category extends Model implements ICategory {
   @IsOptional()
   @IsString()
   @Column({ field: 'CreatedUser', allowNull: true, type: DataType.STRING })
-  createdUser?: string;
+  declare createdUser?: string;
 
   @ApiPropertyOptional({
     description: 'Updated user',
@@ -309,5 +312,5 @@ export class Category extends Model implements ICategory {
   @IsOptional()
   @IsString()
   @Column({ field: 'UpdatedUser', allowNull: true, type: DataType.STRING })
-  updatedUser?: string;
+  declare updatedUser?: string;
 }
